@@ -12,9 +12,13 @@ I recommend you use Anaconda to run this.
 
 I am still working on having it concatenate each itteration it trains cumulatively when the program runs again.
 
-![alt text](https://i.imgur.com/MUvXyQa.png)
 
 
 Example of plot, zoomed in:
+
+![alt text](https://i.imgur.com/MUvXyQa.png)
+
+
+Example output:
 
 ![alt text](https://i.imgur.com/5rsdvEA.png)
