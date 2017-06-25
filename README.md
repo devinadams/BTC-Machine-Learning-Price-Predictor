@@ -1,12 +1,12 @@
-# BTC-Machine-Learning-Price-Predictor
-Python Linear Regression Machine Learning BTC Price Predictor
+# BTC Future Price Predictor
+This script uses linear regression and machine learning to predict the future price of bitcoins.
 
 
-Predicts the future price of BTC one day into the future using quandl.
+This script uses quandl to download the dataframe.
 
-The dataset I used was coinbase's price indexes
+The dataset/frame I used was coinbase's price indexes
 
-This script uses sklearn, numpy, pandas, and matplotlib
+This script uses sklearn, numpy, pandas, quandl, and matplotlib
 
 I recommend you use Anaconda to run this. 
 
