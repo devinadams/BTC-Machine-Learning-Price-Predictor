@@ -17,7 +17,7 @@ class BTC_LinearRegression():
     style.use('ggplot') # specify plot style
 
     def get_data(self):
-        authToken = "YOUR QUANDL AUTH TOKEN"
+        authToken = "YOUR AUTH TOKEN"
         data = quandl.get("BCHARTS/COINBASEUSD", authtoken=authToken)
 
         data = data[['Open', 'Close', 'High', 'Low', 'Volume (BTC)']]
@@ -65,41 +65,45 @@ class BTC_LinearRegression():
 
     def __init__(self):     
         self.data = self.get_data()
-        self.forecast_out = int(math.ceil(.01*len(self.data)))
+        self.forecast_out = int(math.ceil(.01*len(self.data))) # Usually use .01
         self.forecast_col = 'Close'
         self.data['projected_price'] = self.data[self.forecast_col].shift(-self.forecast_out)
         self.forecast_set, self.accuracy = self.start_regression()
         self.project_future_time()
-        self.accuracy_check_var = .95
+        self.accuracy_check_var = .965 # Almost never returns over 96% accuracy
         if self.accuracy > self.accuracy_check_var:
             self.accuracy *= 100
             print("\n")
             print("Accuracy: ", self.accuracy, "%")
             print("\n")
-            print("BTC Forecast Set: ", self.forecast_set)
+            self.smallest_forecast_value_index = self.forecast_set.argmin()
+            self.average_forecast_value = self.forecast_set.mean()
             print("\n")
-            print(self.forecast_out)
-            print(self.data['Forecast'].tail())
+            print("Mean of set: ", self.average_forecast_value)
+            print("\n")
+            print("Smallest value(usually closest to actual value):", self.forecast_set[self.smallest_forecast_value_index])
+            print("\n")
+            print("BTC Forecast(SET): ", self.forecast_set)
+            print("\n")
+            #print(self.forecast_out)
             print("\n")
         else:
             pass
         #self.plot_data()
 
 def main():
-    test = int(input("Enter the number of times to train the model: "))
+    test = int(input("Enter the number of times you would like to TRY to train the model: "))
     while test > 0:
         try:
             btc = BTC_LinearRegression()
-            test = test - 1
             if btc.accuracy > btc.accuracy_check_var:
                 answer = raw_input("Do you wish to plot the data?: Y/N   ")
                 answer = answer.upper()
+                test = test - 1
                 if answer == 'Y':
                     btc.plot_data()
                 elif answer == 'N':
                     print("\n")
-                    print("Accuracy:", btc.accuracy, "%")
-                    print(btc.data['Forecast'].tail())
                     print("User skipped plotting.")
                     print("\n")
             else:
