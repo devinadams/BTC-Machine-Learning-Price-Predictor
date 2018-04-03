@@ -10,6 +10,8 @@ This script uses sklearn, numpy, pandas, quandl, and matplotlib
 
 I recommend you use Anaconda to run this. 
 
+Make sure you insert your own API key from quandl, or the scripts will not be able to grab the datasets.
+
 
 Example of plot, zoomed in:
 
