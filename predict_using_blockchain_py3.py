@@ -22,6 +22,8 @@
 
 # BTC Linear Regression price predictor
 # Written By Devin Adams
+# BTC Linear Regression price predictor
+# Written By Devin Adams
 
 from __future__ import print_function
 import pandas as pd
@@ -85,7 +87,7 @@ class BTC_LinearRegression():
         self.forecast_col = 'Value'
        # print(self.data[self.forecast_col].tail())
         self.data['projected_price'] = self.data[self.forecast_col].shift(-self.forecast_out)
-        self.accuracy_check_var = .986 # Almost never returns over 98.5% accuracy (THIS CHANGES ALOT)
+        self.accuracy_check_var = .985 # Almost never returns over 98.5% accuracy (THIS CHANGES ALOT)
         self.forecast_set, self.accuracy = self.start_regression()
         self.project_future_time()
         self.storage = []
@@ -111,7 +113,7 @@ def main():
                 pass
             if btc.accuracy > btc.accuracy_check_var:
                 data = data + btc.forecast_set.tolist()
-                print(test, btc.forecast_set, "Accuracy:" , btc.accuracy, "%")
+                print(counter, btc.forecast_set, "Accuracy:" , btc.accuracy, "%")
         except Exception as e:
             print(e)
         if counter == 0: 
