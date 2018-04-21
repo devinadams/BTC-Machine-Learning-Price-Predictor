@@ -69,17 +69,7 @@ class BTC_LinearRegression():
         for i in self.forecast_set:
             self.next_date = datetime.datetime.fromtimestamp(self.next_unix)
             self.next_unix += 86400
-            self.data.loc[self.next_date] = [np.nan for _ in range(len(self.data.columns)-1)]+[i]
-
-    def plot_data(self):
-        self.data['Value'].plot()
-        self.data['Forecast'].plot()
-        plt.plot(self.forecast_out)
-        plt.legend(loc=4)
-        plt.xlabel('Date')
-        plt.ylabel('Price')
-        plt.show()
-        
+            self.data.loc[self.next_date] = [np.nan for _ in range(len(self.data.columns)-1)]+[i]        
         
     def __init__(self):
         self.data = self.get_data()
